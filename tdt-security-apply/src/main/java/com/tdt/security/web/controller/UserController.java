@@ -3,7 +3,6 @@ package com.tdt.security.web.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.tdt.security.dto.User;
 import com.tdt.security.dto.UserVo;
-import com.tdt.security.exception.UserNotExistException;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.validation.BindingResult;
@@ -63,11 +62,12 @@ public class UserController {
     @GetMapping("/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User query(@PathVariable(name = "id") String id) {
-        throw new UserNotExistException(id);
-//        User user = new User();
-//        user.setUsername("superbeyone");
-//        user.setPassword("password");
-//        return user;
+//        throw new UserNotExistException(id);
+        System.out.println("查询user信息");
+        User user = new User();
+        user.setUsername("superbeyone");
+        user.setPassword("password");
+        return user;
     }
 
     @PutMapping("/{id:\\d+}")
