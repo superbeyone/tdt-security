@@ -5,8 +5,11 @@ import com.tdt.security.dto.User;
 import com.tdt.security.dto.UserVo;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,11 +44,17 @@ public class UserController {
 
     @PostMapping
     @JsonView(User.UserSimpleView.class)
-    public User create(@RequestBody User user) {
+    public User create(@Valid User user, BindingResult errors) {
+
+        if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
+        }
         System.out.println(user.getUsername());
         System.out.println(user.getPassword());
 
-        user.setId(1);
+        user.setUsername("superbeyone");
+        user.setPassword("password");
+        user.setId("1");
         System.out.println(ReflectionToStringBuilder.toString(user, ToStringStyle.MULTI_LINE_STYLE));
         return user;
     }
@@ -57,5 +66,23 @@ public class UserController {
         user.setUsername("superbeyone");
         user.setPassword("password");
         return user;
+    }
+
+    @PutMapping("/{id:\\d+}")
+    public User update(@Valid User user, BindingResult errors) {
+        System.out.println("userId:\t" + user.getId());
+        if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(error -> {
+                FieldError fieldError = (FieldError) error;
+                System.out.println("fieldError:\t" + fieldError.getDefaultMessage());
+                System.out.println(error.getDefaultMessage());
+            });
+        }
+        return user;
+    }
+
+    @DeleteMapping("{id:\\d+}")
+    public void delete(User user) {
+        System.out.println(user.getId());
     }
 }

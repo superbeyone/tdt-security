@@ -1,6 +1,11 @@
 package com.tdt.security.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.tdt.security.validator.MyConstraint;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Past;
+import java.util.Date;
 
 /**
  * @Project: tdt-security
@@ -21,11 +26,16 @@ public class User {
     }
 
     ;
-    private Integer id;
+    @NotBlank
+    private String id;
+    @MyConstraint(message = "这是一个测试")
     private String username;
     private String email;
+    @NotBlank
     private String password;
 
+    @Past
+    private Date birthday;
 
     public User() {
     }
@@ -36,11 +46,11 @@ public class User {
     }
 
     @JsonView(UserSimpleView.class)
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -57,6 +67,7 @@ public class User {
         return email;
     }
 
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -68,5 +79,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 }

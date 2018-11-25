@@ -13,6 +13,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+
 /**
  * @Project: tdt-security
  * @ClassName: UserControllerTest
@@ -60,14 +64,37 @@ public class UserControllerTest {
     }
 
     @Test
-    public void whenCreateSuccess() throws Exception{
+    public void whenCreateSuccess() throws Exception {
         String result = mockMvc.perform(MockMvcRequestBuilders.post("/user")
                 .param("username", "superbeyone")
-                .param("password", "")
+                .param("password", "lalala")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("superbeyone"))
                 .andReturn().getResponse().getContentAsString();
         System.out.println(result);
 
+    }
+
+    @Test
+    public void whenUpdateSuccess() throws Exception {
+        Date date = new Date(LocalDateTime.now().plusYears(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+        String result = mockMvc.perform(MockMvcRequestBuilders.put("/user/1")
+                .param("username", "Java")
+                .param("password", "python")
+                .param("birthday", date.toString())
+                .param("id", "1")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("1"))
+                .andReturn().getResponse().getContentAsString();
+        System.out.println(result);
+    }
+
+    @Test
+    public void whenDeleteSuccess() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/user/1")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
