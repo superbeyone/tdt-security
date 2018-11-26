@@ -1,8 +1,8 @@
 package com.tdt.security.web.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.tdt.security.dto.User;
-import com.tdt.security.dto.UserVo;
+import com.tdt.security.pojo.User;
+import com.tdt.security.pojo.UserVo;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.validation.BindingResult;

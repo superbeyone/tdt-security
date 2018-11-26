@@ -1,4 +1,4 @@
-package com.tdt.security.dto;
+package com.tdt.security.pojo;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.tdt.security.validator.MyConstraint;

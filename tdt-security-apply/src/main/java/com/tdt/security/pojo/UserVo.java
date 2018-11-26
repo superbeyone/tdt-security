@@ -1,4 +1,4 @@
-package com.tdt.security.dto;
+package com.tdt.security.pojo;
 
 /**
  * @Project: tdt-security
