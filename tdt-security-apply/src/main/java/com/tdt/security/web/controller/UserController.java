@@ -3,6 +3,8 @@ package com.tdt.security.web.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.tdt.security.pojo.User;
 import com.tdt.security.pojo.UserVo;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.validation.BindingResult;
@@ -26,6 +28,7 @@ public class UserController {
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
+    @ApiOperation(value = "数据查询服务")
     public List<User> query(UserVo userVo) {
         ArrayList<User> users = new ArrayList<>();
 
@@ -61,7 +64,7 @@ public class UserController {
 
     @GetMapping("/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
-    public User query(@PathVariable(name = "id") String id) {
+    public User query(@PathVariable(name = "id") @ApiParam(value = "用户主键id") String id) {
 //        throw new UserNotExistException(id);
         System.out.println("查询user信息");
         User user = new User();

@@ -1,5 +1,7 @@
 package com.tdt.security.pojo;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * @Project: tdt-security
  * @ClassName: UserVo
@@ -9,7 +11,9 @@ package com.tdt.security.pojo;
  **/
 
 public class UserVo {
+    @ApiModelProperty(value = "用户名")
     private String username;
+    @ApiModelProperty(value = "用户邮箱")
     private String email;
 
     public String getUsername() {

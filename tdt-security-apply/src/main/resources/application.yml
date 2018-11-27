@@ -1,4 +1,26 @@
 spring:
+  profiles:
+    active: company
+---
+#########################################[ company addr ]################################################
+spring:
+  profiles: company
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.9.104.131:3306/test?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: tdt_1818
+
+  session:
+    store-type: none
+security:
+  basic:
+    enabled: false
+
+---
+#########################################[ mine addr ]################################################
+spring:
+  profiles: mine
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.9.104.131:3306/test?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
