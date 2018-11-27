@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/db_tdt?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://192.9.104.131:3306/test?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
     username: root
-    password: root
+    password: tdt_1818
 
   session:
     store-type: none
