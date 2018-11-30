@@ -32,3 +32,11 @@ spring:
 #security:
 #  basic:
 #    enabled: false
+
+
+########################################[自定义配置]####################################################
+
+tdt:
+  security:
+    browser:
+      loginPage: /demo-signIn.html

@@ -1,5 +1,7 @@
 package com.tdt.security.browser.config;
 
+import com.tdt.security.properties.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,6 +19,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    SecurityProperties securityProperties;
+
     @Bean
     public PasswordEncoder BCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -24,13 +29,13 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         http.formLogin()   //想用默认的HttpBasic登录使用    http.httpBasic()
-                .loginPage("/tdt-signIn.html")
+                .loginPage("/authentication/require")
                 .loginProcessingUrl("/authentication/form")
                 .and()
                 .authorizeRequests()//下面的配置都是授权配置
-                .antMatchers("/tdt-signIn.html")
+                .antMatchers("/authentication/require",
+                        securityProperties.getBrowser().getLoginPage())
                 .permitAll()
                 .anyRequest()//任何请求
                 .authenticated()//都需要身份认证
