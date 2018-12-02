@@ -45,7 +45,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()//下面的配置都是授权配置
                 .antMatchers("/authentication/require",
-                        securityProperties.getBrowser().getLoginPage())
+                        securityProperties.getBrowser().getLoginPage(),
+                        "/code/image")
                 .permitAll()
                 .anyRequest()//任何请求
                 .authenticated()//都需要身份认证
