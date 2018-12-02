@@ -25,7 +25,7 @@ import java.util.Random;
 @RestController
 public class ValidateCodeController {
 
-    private static final String SESSION_KEY = "SESSION_KEY_IMAGE_CODE";
+    public static final String SESSION_KEY = "SESSION_KEY_IMAGE_CODE";
     //Spring 提供的操作Session的工具类
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 

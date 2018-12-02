@@ -36,8 +36,8 @@ spring:
 
 ########################################[自定义配置]####################################################
 
-tdt:
-  security:
-    browser:
+#tdt:
+#  security:
+#    browser:
 #      loginPage: /demo-signIn.html
-      loginType: REDIRECT
+#      loginType: REDIRECT
