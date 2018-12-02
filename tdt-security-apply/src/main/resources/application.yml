@@ -36,8 +36,14 @@ spring:
 
 ########################################[自定义配置]####################################################
 
-#tdt:
-#  security:
+tdt:
+  security:
+    code:
+      image:
+        length: 4
+        width: 80
+        height: 30
+        url: /user/*
 #    browser:
 #      loginPage: /demo-signIn.html
 #      loginType: REDIRECT
