@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @GetMapping("/me")
+    public Object getCurrentUser() {
+        return SecurityContextHolder.getContext().getAuthentication();
+    }
+
+    @PostMapping("/me")
+    public Object getCurrentUser(Authentication authentication) {
+        return authentication;
+    }
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
