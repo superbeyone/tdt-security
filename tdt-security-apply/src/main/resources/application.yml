@@ -23,7 +23,7 @@ spring:
   profiles: mine
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/db_springsecurity?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
 
@@ -36,14 +36,14 @@ spring:
 
 ########################################[自定义配置]####################################################
 
-tdt:
-  security:
-    code:
-      image:
-        length: 4
-        width: 80
-        height: 30
-        url: /user/*
+#tdt:
+#  security:
+#    code:
+#      image:
+#        length: 4
+#        width: 80
+#        height: 30
+#        url: /user/*
 #    browser:
 #      loginPage: /demo-signIn.html
 #      loginType: REDIRECT

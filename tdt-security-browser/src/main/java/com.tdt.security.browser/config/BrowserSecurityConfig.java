@@ -9,9 +9,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
+
 
 /**
  * @Project: tdt-security
@@ -32,9 +38,25 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     TdtAuthenticationFailureHandler tdtAuthenticationFailureHandler;
 
+    @Autowired
+    DataSource dataSource;
+
+    @Autowired
+    UserDetailsService userDetailsService;
+
     @Bean
     public PasswordEncoder BCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository(){
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+//        tokenRepository.setCreateTableOnStartup(true);//第一次启动时放开,会自动生成persistent_logins表
+        //"create table persistent_logins (username varchar(64) not null, series varchar(64) primary key, "
+        //			+ "token varchar(64) not null, last_used timestamp not null)"
+        return tokenRepository;
     }
 
     @Override
@@ -51,6 +73,11 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/authentication/form")
                 .successHandler(tdtAuthenticationSuccessHandler)
                 .failureHandler(tdtAuthenticationFailureHandler)
+                .and()
+                .rememberMe()
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
+                .userDetailsService(userDetailsService)
                 .and()
                 .authorizeRequests()//下面的配置都是授权配置
                 .antMatchers("/authentication/require",
