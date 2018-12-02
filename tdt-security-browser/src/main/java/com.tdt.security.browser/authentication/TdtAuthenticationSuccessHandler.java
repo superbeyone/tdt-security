@@ -45,7 +45,7 @@ public class TdtAuthenticationSuccessHandler extends SavedRequestAwareAuthentica
         logger.info("登录成功");
         if (LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())) {
 
-            response.setContentType("application/json:charset=utf-8");
+            response.setContentType("application/json;charset=utf-8");
             response.getWriter().write(objectMapper.writeValueAsString(authentication));
         } else {
             super.onAuthenticationSuccess(request, response, authentication);//父类方法  （跳转）

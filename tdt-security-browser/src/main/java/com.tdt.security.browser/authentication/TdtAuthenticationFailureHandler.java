@@ -47,7 +47,7 @@ public class TdtAuthenticationFailureHandler extends SimpleUrlAuthenticationFail
         logger.info("登录失败");
         if (LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())) {
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-            response.setContentType("application/json:charset=utf-8");
+            response.setContentType("application/json;charset=utf-8");
             response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(exception.getMessage())));
         } else {
             super.onAuthenticationFailure(request, response, exception);
