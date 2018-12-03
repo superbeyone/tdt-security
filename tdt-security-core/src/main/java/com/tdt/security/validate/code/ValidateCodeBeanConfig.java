@@ -1,6 +1,8 @@
 package com.tdt.security.validate.code;
 
 import com.tdt.security.properties.SecurityProperties;
+import com.tdt.security.validate.code.sms.DefaultSmsCodeSender;
+import com.tdt.security.validate.code.sms.SmsCodeSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -21,9 +23,16 @@ public class ValidateCodeBeanConfig {
 
     @Bean
     @ConditionalOnMissingBean(name = "imageCodeGenerator")
-    public ValidateCodeGenerator imageCodeGenerator(){
+    public ValidateCodeGenerator imageCodeGenerator() {
         ImageCodeGenerator imageCodeGenerator = new ImageCodeGenerator();
         imageCodeGenerator.setSecurityProperties(securityProperties);
         return imageCodeGenerator;
+    }
+
+    @Bean
+//    @ConditionalOnMissingBean(name = "smsCodeGenerator")//第一种写法
+    @ConditionalOnMissingBean(SmsCodeSender.class) //第二种写法
+    public SmsCodeSender smsCodeSender() {
+        return new DefaultSmsCodeSender();
     }
 }

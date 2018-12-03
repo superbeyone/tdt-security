@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: mine
+    active: company
 ---
 #########################################[ company addr ]################################################
 spring:
