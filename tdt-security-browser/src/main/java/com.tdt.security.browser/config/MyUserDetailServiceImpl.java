@@ -7,7 +7,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.mobileNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -27,15 +27,15 @@ public class MyUserDetailServiceImpl implements UserDetailsService {
     PasswordEncoder passwordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserBymobile(String mobile) throws mobileNotFoundException {
 
         //根据用户名查找用户信息
-        logger.info("登录用户名:\t" + username);
+        logger.info("登录用户名:\t" + mobile);
         String password = passwordEncoder.encode("123456");//注册时的操作，实际只需要从数据库中查出用户密码就行了
         logger.info("数据库密码是:\t" + password);
         //参数：用户名，密码，权限集合
-        return new User(username, password, true, true, true, true,
+        return new User(mobile, password, true, true, true, true,
                 AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
-//        return new User(username,"123456", AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+//        return new User(mobile,"123456", AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
     }
 }

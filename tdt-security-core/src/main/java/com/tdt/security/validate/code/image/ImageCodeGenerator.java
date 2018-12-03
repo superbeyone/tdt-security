@@ -1,6 +1,7 @@
-package com.tdt.security.validate.code;
+package com.tdt.security.validate.code.image;
 
 import com.tdt.security.properties.SecurityProperties;
+import com.tdt.security.validate.code.ValidateCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;

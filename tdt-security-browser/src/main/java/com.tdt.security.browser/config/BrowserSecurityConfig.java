@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.SmsCodeAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -50,11 +50,11 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PersistentTokenRepository persistentTokenRepository(){
+    public PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
         tokenRepository.setDataSource(dataSource);
-//        tokenRepository.setCreateTableOnStartup(true);//第一次启动时放开,会自动生成persistent_logins表
-        //"create table persistent_logins (username varchar(64) not null, series varchar(64) primary key, "
+        tokenRepository.setCreateTableOnStartup(true);//第一次启动时放开,会自动生成persistent_logins表
+        //"create table persistent_logins (mobile varchar(64) not null, series varchar(64) primary key, "
         //			+ "token varchar(64) not null, last_used timestamp not null)"
         return tokenRepository;
     }
@@ -67,7 +67,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         validateCodeFilter.setSecurityProperties(securityProperties);
         validateCodeFilter.afterPropertiesSet();
 
-        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+        http.addFilterBefore(validateCodeFilter, SmsCodeAuthenticationFilter.class)
                 .formLogin()   //想用默认的HttpBasic登录使用    http.httpBasic()
                 .loginPage("/authentication/require")
                 .loginProcessingUrl("/authentication/form")
@@ -82,7 +82,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()//下面的配置都是授权配置
                 .antMatchers("/authentication/require",
                         securityProperties.getBrowser().getLoginPage(),
-                        "/code/image")
+                        "/code/*")
                 .permitAll()
                 .anyRequest()//任何请求
                 .authenticated()//都需要身份认证

@@ -1,6 +1,8 @@
-package com.tdt.security.validate.code;
+package com.tdt.security.validate.code.sms;
 
 import com.tdt.security.properties.SecurityProperties;
+import com.tdt.security.validate.code.ValidateCode;
+import com.tdt.security.validate.code.ValidateCodeGenerator;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,10 +10,10 @@ import org.springframework.web.context.request.ServletWebRequest;
 
 /**
  * @Project: tdt-security
- * @ClassName: ImageCodeGenerator
+ * @ClassName: SmsCodeGenerator
  * @Author: Mr.superbeyone
  * @Time: 2018-12-02 19:11
- * @Description: 图形校验码生成器实现
+ * @Description: 短信校验码生成器实现
  **/
 @Component("smsCodeGenerator")
 public class SmsCodeGenerator implements ValidateCodeGenerator {

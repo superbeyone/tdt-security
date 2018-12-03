@@ -42,11 +42,11 @@ public class UserControllerTest {
     @Test
     public void whenQuerySuccess() throws Exception {
         String result = mockMvc.perform(MockMvcRequestBuilders.get("/user")
-                .param("username", "superbeyone")
+                .param("mobile", "superbeyone")
                 .param("email", "superbeyone@outlook.com")
 //                .param("size", "10")
 //                .param("page", "2")
-//                .param("sort", "username desc")
+//                .param("sort", "mobile desc")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(3))
@@ -59,7 +59,7 @@ public class UserControllerTest {
         String result = mockMvc.perform(MockMvcRequestBuilders.get("/user/1")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("superbeyone"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.mobile").value("superbeyone"))
                 .andReturn().getResponse().getContentAsString();
         System.out.println(result);
     }
@@ -67,11 +67,11 @@ public class UserControllerTest {
     @Test
     public void whenCreateSuccess() throws Exception {
         String result = mockMvc.perform(MockMvcRequestBuilders.post("/user")
-                .param("username", "superbeyone")
+                .param("mobile", "superbeyone")
                 .param("password", "lalala")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("superbeyone"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.mobile").value("superbeyone"))
                 .andReturn().getResponse().getContentAsString();
         System.out.println(result);
 
@@ -81,7 +81,7 @@ public class UserControllerTest {
     public void whenUpdateSuccess() throws Exception {
         Date date = new Date(LocalDateTime.now().plusYears(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
         String result = mockMvc.perform(MockMvcRequestBuilders.put("/user/1")
-                .param("username", "Java")
+                .param("mobile", "Java")
                 .param("password", "python")
                 .param("birthday", date.toString())
                 .param("id", "1")

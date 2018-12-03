@@ -64,10 +64,10 @@ public class UserController {
         if (errors.hasErrors()) {
             errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
         }
-        System.out.println(user.getUsername());
+        System.out.println(user.getmobile());
         System.out.println(user.getPassword());
 
-        user.setUsername("superbeyone");
+        user.setmobile("superbeyone");
         user.setPassword("password");
         user.setId("1");
         System.out.println(ReflectionToStringBuilder.toString(user, ToStringStyle.MULTI_LINE_STYLE));
@@ -80,7 +80,7 @@ public class UserController {
 //        throw new UserNotExistException(id);
         System.out.println("查询user信息");
         User user = new User();
-        user.setUsername("superbeyone");
+        user.setmobile("superbeyone");
         user.setPassword("password");
         return user;
     }

@@ -12,16 +12,16 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class UserVo {
     @ApiModelProperty(value = "用户名")
-    private String username;
+    private String mobile;
     @ApiModelProperty(value = "用户邮箱")
     private String email;
 
-    public String getUsername() {
-        return username;
+    public String getmobile() {
+        return mobile;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setmobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getEmail() {

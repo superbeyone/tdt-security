@@ -29,7 +29,7 @@ public class User {
     @NotBlank
     private String id;
     @MyConstraint(message = "这是一个测试")
-    private String username;
+    private String mobile;
     private String email;
     @NotBlank
     private String password;
@@ -40,8 +40,8 @@ public class User {
     public User() {
     }
 
-    public User(String username, String email) {
-        this.username = username;
+    public User(String mobile, String email) {
+        this.mobile = mobile;
         this.email = email;
     }
 
@@ -55,12 +55,12 @@ public class User {
     }
 
     @JsonView(UserSimpleView.class)
-    public String getUsername() {
-        return username;
+    public String getmobile() {
+        return mobile;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setmobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getEmail() {

@@ -1,6 +1,7 @@
 package com.tdt.security.validate.code;
 
 import com.tdt.security.properties.SecurityProperties;
+import com.tdt.security.validate.code.image.ImageCodeGenerator;
 import com.tdt.security.validate.code.sms.DefaultSmsCodeSender;
 import com.tdt.security.validate.code.sms.SmsCodeSender;
 import org.springframework.beans.factory.annotation.Autowired;

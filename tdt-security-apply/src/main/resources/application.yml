@@ -8,7 +8,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.9.104.131:3306/test?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
-    username: root
+    mobile: root
     password: tdt_1818
 
   session:
@@ -24,7 +24,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/db_springsecurity?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
-    username: root
+    mobile: root
     password: root
 
   session:

@@ -1,4 +1,6 @@
-package com.tdt.security.validate.code;
+package com.tdt.security.validate.code.image;
+
+import com.tdt.security.validate.code.ValidateCode;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
