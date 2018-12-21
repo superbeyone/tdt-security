@@ -1,7 +1,7 @@
 package com.tdt.security.code;
 
-import com.tdt.security.validate.code.image.ImageCode;
-import com.tdt.security.validate.code.ValidateCodeGenerator;
+import com.tdt.security.core.validate.code.image.ImageCode;
+import com.tdt.security.core.validate.code.ValidateCodeGenerator;
 import org.springframework.web.context.request.ServletWebRequest;
 
 /**

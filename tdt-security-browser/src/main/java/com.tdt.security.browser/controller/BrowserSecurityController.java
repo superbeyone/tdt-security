@@ -1,7 +1,7 @@
 package com.tdt.security.browser.controller;
 
 import com.tdt.security.browser.support.SimpleResponse;
-import com.tdt.security.properties.SecurityProperties;
+import com.tdt.security.core.properties.SecurityProperties;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -3,11 +3,9 @@ package com.tdt.security.browser.config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.mobileNotFoundException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +25,10 @@ public class MyUserDetailServiceImpl implements UserDetailsService {
     PasswordEncoder passwordEncoder;
 
     @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
+    }
+/*  @Override
     public UserDetails loadUserBymobile(String mobile) throws mobileNotFoundException {
 
         //根据用户名查找用户信息
@@ -37,5 +39,6 @@ public class MyUserDetailServiceImpl implements UserDetailsService {
         return new User(mobile, password, true, true, true, true,
                 AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
 //        return new User(mobile,"123456", AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
-    }
+    }*/
+
 }

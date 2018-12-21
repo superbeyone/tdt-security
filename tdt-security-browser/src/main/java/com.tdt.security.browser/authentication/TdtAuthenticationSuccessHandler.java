@@ -1,8 +1,8 @@
 package com.tdt.security.browser.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tdt.security.properties.LoginType;
-import com.tdt.security.properties.SecurityProperties;
+import com.tdt.security.core.properties.LoginType;
+import com.tdt.security.core.properties.SecurityProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
